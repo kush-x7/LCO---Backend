@@ -3,15 +3,12 @@ const dateFormat = require("date-format");
 const PORT = 3000;
 const app = express();
 
+// First it will check this route
 app.get("/", (req, res) => {
   res.status(200).send({ message: "Hello from the server" });
 });
 
-app.get("/api/v1/:randomText", (req, res) => {
-  console.log(req.params.randomText);
-  res.status(200).json({ param: req.params.randomText });
-});
-
+// CHeck for instagram route and return this data to user
 app.get("/api/v1/instagram", (req, res) => {
   const instagramUserData = {
     username: "kush",
@@ -23,6 +20,7 @@ app.get("/api/v1/instagram", (req, res) => {
   res.status(200).json(instagramUserData);
 });
 
+// CHeck for linkedin route and return this data to user
 app.get("/api/v1/linkedin", (req, res) => {
   const linkedinUserData = {
     username: "kush linkedin",
@@ -32,6 +30,12 @@ app.get("/api/v1/linkedin", (req, res) => {
   };
 
   res.status(200).json(linkedinUserData);
+});
+
+// Place this param route at the last otherwise the routes mentioned below will give error
+app.get("/api/v1/:randomText", (req, res) => {
+  console.log(req.params.randomText);
+  res.status(200).json({ param: req.params.randomText });
 });
 
 app.listen(PORT, () => {
