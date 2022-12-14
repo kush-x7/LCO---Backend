@@ -3,8 +3,15 @@ const dateFormat = require("date-format");
 
 // Always keep your process.env.PORT at first otherwise it will give deployment issue.
 // This process.env.PORT will take url from our .env file
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 const app = express();
+
+// Swagger docs related
+const swaggerUi = require("swagger-ui-express");
+const YAML = require("yamljs");
+const swaggerDocument = YAML.load("./swagger.yaml");
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // First it will check this route
 app.get("/", (req, res) => {
@@ -42,5 +49,5 @@ app.get("/api/v1/:randomText", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`http://localhost:3000`);
+  console.log(`http://localhost:${PORT}`);
 });
