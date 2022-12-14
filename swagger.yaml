@@ -39,3 +39,22 @@ paths:
                     type: string
                   follows:
                     type: string
+  /{randomText}:
+    get:
+      summary: returns whatever is there in parameters
+      parameters:
+        - name: randomText
+          default: "kush"
+          in: path
+          schema:
+            type: string
+      responses:
+        200: # status code
+          description: returns an object
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  params:
+                    type: string
