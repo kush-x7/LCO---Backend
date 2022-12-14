@@ -1,6 +1,9 @@
 const express = require("express");
 const dateFormat = require("date-format");
-const PORT = 3000;
+
+// Always keep your process.env.PORT at first otherwise it will give deployment issue.
+// This process.env.PORT will take url from our .env file
+const PORT = process.env.PORT || 3000;
 const app = express();
 
 // First it will check this route
